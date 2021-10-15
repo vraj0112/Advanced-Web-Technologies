@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Information</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid col-lg-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header" style="background-color: #2B60DE;">
+                        <h3 class="card-title" style="color: white;">Profile Information</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped" style="width: 50%;">
+                        <thead align="center" class="table-secondary">
+                            <th colspan="2">Information</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" width="30%">First Name</th>
+                                <td>{%FNAME%}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" width="30%">Last Name</th>
+                                <td>{%LNAME%}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" width="30%">Mobile Number</th>
+                                <td>{%CONTACTNO%}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" width="30%">Birth Date</th>
+                                <td>{%BDATE%}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" width="30%">Gender</th>
+                                <td>{%GENDER%}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" width="30%">Address</th>
+                                <td>{%ADDRESS%}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" width="30%">Institute</th>
+                                <td>{%INSTITUTE%}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" width="30%">Department</th>
+                                <td>{%DEPARTMENT%}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" width="30%">Semester</th>
+                                <td>{%SEMESTER%}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

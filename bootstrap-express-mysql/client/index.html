@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Operation Using Express JS and MySQL</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-md-12 mt-3 d-flex justify-content-center">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Add Course Details
+                    </h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <label for="courseId" class="text-md col-form-label">Course Id</label>
+                        </div>
+
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" id="courseId" maxlength="10"
+                                placeholder="Enter Course Id...">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="courseName" class="text-md col-form-label">Course Name</label>
+                        </div>
+
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="courseName" maxlength="50"
+                                placeholder="Enter Course Name...">
+                        </div>
+                    </div>
+
+                    <div class="form-group row mt-2">
+                        <div class="col-md-3">
+                            <label for="departmentName" class="text-md col-form-label">Department Name</label>
+                        </div>
+
+                        <div class="form-check col-md-2 mt-2">
+                            <input class="form-check-input" type="radio" id="CSE" name="departmentName" value="CSE">
+                            <label class="form-check-label" for="CSE">
+                                CSE
+                            </label>
+                        </div>
+
+                        <div class="form-check col-md-2 mt-2">
+                            <input class="form-check-input" type="radio" id="CE" name="departmentName" value="CE">
+                            <label class="form-check-label" for="CE">
+                                CE
+                            </label>
+                        </div>
+
+                        <div class="form-check col-md-2 mt-2">
+                            <input class="form-check-input" type="radio" id="IT" name="departmentName" value="IT">
+                            <label class="form-check-label" for="IT">
+                                IT
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row mt-2">
+                        <div class="col-md-3">
+                            <label for="instituteName" class="text-md col-form-label">Institute Name</label>
+                        </div>
+
+                        <div class="form-check col-md-2 mt-2">
+                            <input class="form-check-input" type="checkbox" id="CSPIT" value="CSPIT">
+                            <label class="form-check-label" for="CSPIT">
+                                CSPIT
+                            </label>
+                        </div>
+
+                        <div class="form-check col-md-2 mt-2">
+                            <input class="form-check-input" type="checkbox" id="DEPSTAR" value="DEPSTAR">
+                            <label class="form-check-label" for="DEPSTAR">
+                                DEPSTAR
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row mt-2">
+                        <div class="col-md-3">
+                            <label for="univeristyName" class="text-md col-form-label">University Name</label>
+                        </div>
+
+                        <div class="col-md-4">
+                            <select name="universityName" id="universityName" class="form-select">
+                                <option value="-1">Select University</option>
+                                <option value="1">CHARUSAT</option>
+                                <option value="2">Nirma</option>
+                                <option value="3">DAIICT</option>
+                                <option value="4">PDPU</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" value="submit" id="addCourse" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 mt-3 d-flex justify-content-center">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Manage Course Details
+                    </h3>
+                </div>
+
+                <div class="card-body table-responsive">
+                    <table class="table table-bordered" id="courseDetails">
+                        <thead>
+                          <tr>
+                            <th>ID</th>
+                            <th>Course Id</th>
+                            <th>Course Name</th>
+                            <th>Department Name</th>
+                            <th>Institute Name</th>
+                            <th>University Name</th>
+                            <th>Date Added</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                          </tr>
+                        </thead>
+                        <tbody></tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section hidden id="updateRow">
+        <div class="row">
+            <div class="col-md-12 mt-3 d-flex justify-content-center">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Edit Course Details
+                        </h3>
+                    </div>
+    
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <label for="editCourseId" class="text-md col-form-label">Course Id</label>
+                            </div>
+    
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" id="editCourseId" maxlength="10"
+                                    placeholder="Enter Course Id...">
+                            </div>
+    
+                            <div class="col-md-3">
+                                <label for="editCourseName" class="text-md col-form-label">Course Name</label>
+                            </div>
+    
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="editCourseName" maxlength="50"
+                                    placeholder="Enter Course Name...">
+                            </div>
+                        </div>
+    
+                        <div class="form-group row mt-2">
+                            <div class="col-md-3">
+                                <label for="editDepartmentName" class="text-md col-form-label">Department Name</label>
+                            </div>
+    
+                            <div class="form-check col-md-2 mt-2">
+                                <input class="form-check-input" type="radio" id="editCSE" name="editDepartmentName" value="CSE">
+                                <label class="form-check-label" for="CSE">
+                                    CSE
+                                </label>
+                            </div>
+    
+                            <div class="form-check col-md-2 mt-2">
+                                <input class="form-check-input" type="radio" id="editCE" name="editDepartmentName" value="CE">
+                                <label class="form-check-label" for="CE">
+                                    CE
+                                </label>
+                            </div>
+    
+                            <div class="form-check col-md-2 mt-2">
+                                <input class="form-check-input" type="radio" id="editIT" name="editDepartmentName" value="IT">
+                                <label class="form-check-label" for="IT">
+                                    IT
+                                </label>
+                            </div>
+                        </div>
+    
+                        <div class="form-group row mt-2">
+                            <div class="col-md-3">
+                                <label for="editInstituteName" class="text-md col-form-label">Institute Name</label>
+                            </div>
+    
+                            <div class="form-check col-md-2 mt-2">
+                                <input class="form-check-input" type="checkbox" id="editCSPIT" value="CSPIT">
+                                <label class="form-check-label" for="CSPIT">
+                                    CSPIT
+                                </label>
+                            </div>
+    
+                            <div class="form-check col-md-2 mt-2">
+                                <input class="form-check-input" type="checkbox" id="editDEPSTAR" value="DEPSTAR">
+                                <label class="form-check-label" for="DEPSTAR">
+                                    DEPSTAR
+                                </label>
+                            </div>
+                        </div>
+    
+                        <div class="form-group row mt-2">
+                            <div class="col-md-3">
+                                <label for="editUniveristyName" class="text-md col-form-label">University Name</label>
+                            </div>
+    
+                            <div class="col-md-4">
+                                <select name="editUniversityName" id="editUniversityName" class="form-select">
+                                    <option value="-1">Select University</option>
+                                    <option value="1">CHARUSAT</option>
+                                    <option value="2">Nirma</option>
+                                    <option value="3">DAIICT</option>
+                                    <option value="4">PDPU</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="card-footer">
+                        <button type="submit" value="submit" id="updateCourse" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="index.js"></script>
+</body>
+
+</html>
