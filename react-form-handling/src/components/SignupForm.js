@@ -10,7 +10,19 @@ function SignupForm() {
             cpassword:''
         },
         onSubmit: values => {
-            console.log('Form data ', values)
+            if(values.uname === ''){
+                alert('Username is Required!');
+            }else if(values.email === ''){
+                alert('Email is Required!');
+            }else if(values.password === ''){
+                alert('Password is Required!');
+            }else if(values.cpassword === ''){
+                alert('Confirm Password is Required!');
+            }else if(values.password !== values.cpassword){
+                alert('Confirm password doesnot match with Password!');
+            }else{
+                console.log('Form data ', values)
+            }
         }
     }   
     )
